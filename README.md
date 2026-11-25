@@ -39,7 +39,18 @@ Requirements: .NET 8 SDK, SQL Server, Redis, a Stripe account.
    cd Talabat.Api
    ```
 
-2. Set your own values in `Talabat.Api/appsettings.json` or with user secrets: `ConnectionStrings` (`DefaultConnection`, `IdentityConnection`, `RedisConnection`), `JWT` settings and `StripeKeys`.
+2. Replace the placeholders in `Talabat.Api/appsettings.json` with your own values. Do not commit real secrets. Set them with user secrets or environment variables instead:
+
+   ```sh
+   cd Talabat.Api
+   dotnet user-secrets init
+   dotnet user-secrets set "ConnectionStrings:DefaultConnection" "<your connection string>"
+   dotnet user-secrets set "ConnectionStrings:IdentityConnection" "<your connection string>"
+   dotnet user-secrets set "JWT:Key" "<a long random key>"
+   dotnet user-secrets set "StripeKeys:Secretkey" "<your Stripe secret key>"
+   dotnet user-secrets set "StripeKeys:Publishablekey" "<your Stripe publishable key>"
+   ```
+
 3. Run the API. Migrations and seed data are applied automatically on startup.
 
    ```sh
